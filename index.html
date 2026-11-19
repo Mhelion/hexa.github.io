@@ -1,487 +1,1501 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Mhelion Art - String Art App & Kits | Transforma tus fotos en arte con hilos</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hexa Studio Art — Estudio Profesional de String Art</title>
+    <meta
+      name="description"
+      content="Estudio profesional de String Art y tejido geométrico. Transforma tus fotos en arte con hilos."
+    />
+    <meta property="og:title" content="Hexa Studio Art — Estudio Profesional de String Art" />
+    <meta
+      property="og:description"
+      content="Estudio profesional de String Art y tejido geométrico. Transforma tus fotos en arte con hilos."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        :root {
-            --primary: #2c3e50;
-            --accent: #e67e22;
-            --light: #ecf0f1;
-            --dark: #34495e;
-            --whatsapp: #25d366;
+      :root {
+        --bg-body: #0c0d12;
+        --bg-card: rgba(18, 19, 25, 0.88);
+        --bg-charcoal: #14151c;
+        --text-primary: #f5f3ef;
+        --text-secondary: #a8a29e;
+        --gold-old: #d4af37;
+        --gold-light: #f3e5ab;
+        --copper: #c86432;
+        --bronze: #cd7f32;
+        --rose-gold: #e8a598;
+        --whatsapp: #059669;
+        --whatsapp-hover: #047857;
+        --ml-yellow: #fff159;
+        --ml-text: #333333;
+        --border-gold: rgba(212, 175, 55, 0.2);
+        --border-subtle: rgba(212, 175, 55, 0.14);
+      }
+
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        background-color: var(--bg-body);
+        color: var(--text-primary);
+        font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+        letter-spacing: 0.01em;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background-color: var(--bg-body);
+        background-image:
+          radial-gradient(circle at 14% 12%, rgba(126, 82, 160, 0.08) 0%, transparent 46%),
+          radial-gradient(circle at 86% 24%, rgba(162, 72, 120, 0.05) 0%, transparent 42%),
+          radial-gradient(circle at 52% 88%, rgba(205, 127, 50, 0.06) 0%, transparent 50%),
+          linear-gradient(to right, rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+        background-size: 100% 100%, 100% 100%, 100% 100%, 24px 24px, 24px 24px;
+        color: var(--text-primary);
+        line-height: 1.65;
+        overflow-x: hidden;
+      }
+
+      h1, h2, h3, h4 {
+        margin: 0;
+        line-height: 1.12;
+      }
+
+      h1, h2, h3, .font-display {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        text-wrap: balance;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font-family: inherit;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--gold-old);
+        outline-offset: 3px;
+      }
+
+      .mono {
+        font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .text-gold-gradient {
+        background: linear-gradient(135deg, #f3e5ab 0%, #d4af37 50%, #aa820a 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* Header (3-Zone Contract) */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 64px;
+        z-index: 40;
+        background: rgba(16, 17, 23, 0.82);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+
+      .header-inner {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 32px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .brand-wordmark {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 1.25rem;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+      }
+
+      nav {
+        display: none;
+        align-items: center;
+        gap: 28px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+      }
+
+      nav a {
+        white-space: nowrap;
+        flex-shrink: 0;
+        padding: 4px 0;
+        border-bottom: 1px solid transparent;
+        transition: color 0.18s ease, border-color 0.18s ease;
+      }
+
+      nav a:hover {
+        color: var(--gold-light);
+        border-bottom-color: rgba(212, 175, 55, 0.45);
+      }
+
+      @media (min-width: 820px) {
+        nav {
+          display: flex;
         }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+      }
+
+      /* Buttons */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 11px 20px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        border: 1px solid transparent;
+        cursor: pointer;
+        white-space: nowrap;
+        flex-shrink: 0;
+        transition: transform 0.16s ease, background-color 0.16s ease, filter 0.16s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .btn-sm {
+        padding: 8px 16px;
+        font-size: 0.75rem;
+      }
+
+      .btn-wa {
+        background: var(--whatsapp);
+        color: #ffffff;
+      }
+
+      .btn-wa:hover {
+        background: var(--whatsapp-hover);
+      }
+
+      .btn-ml {
+        background: var(--ml-yellow);
+        color: var(--ml-text);
+      }
+
+      .btn-ml:hover {
+        background: #f5e642;
+      }
+
+      .btn-gold {
+        background: linear-gradient(135deg, #f3e5ab 0%, #d4af37 50%, #c5a059 100%);
+        color: #0c0d12;
+      }
+
+      .btn-gold:hover {
+        filter: brightness(1.06);
+      }
+
+      .btn-outline {
+        background: transparent;
+        border-color: rgba(212, 175, 55, 0.34);
+        color: var(--gold-light);
+      }
+
+      .btn-outline:hover {
+        background: rgba(212, 175, 55, 0.1);
+      }
+
+      /* Glass Card */
+      .glass-card {
+        position: relative;
+        background: var(--bg-card);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--border-gold);
+        border-radius: 24px;
+        padding: 28px;
+      }
+
+      /* Layout & Sections */
+      main {
+        padding-top: 64px;
+      }
+
+      section {
+        padding: 84px 0;
+        border-top: 1px solid rgba(212, 175, 55, 0.12);
+      }
+
+      section.hero {
+        border-top: none;
+        padding: 56px 0 80px;
+      }
+
+      .kicker {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--gold-old);
+        margin: 0 0 12px;
+      }
+
+      h1 {
+        font-size: clamp(2.4rem, 4.4vw, 3.95rem);
+        font-weight: 700;
+        line-height: 1.06;
+      }
+
+      h2 {
+        font-size: clamp(1.9rem, 3.2vw, 2.65rem);
+        font-weight: 700;
+      }
+
+      .section-intro {
+        max-width: 640px;
+        margin-bottom: 44px;
+      }
+
+      .lead {
+        color: var(--text-secondary);
+        font-size: 1rem;
+        line-height: 1.7;
+        margin: 18px 0 0;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 40px;
+        align-items: stretch;
+      }
+
+      @media (min-width: 960px) {
+        .hero-grid {
+          grid-template-columns: 1.25fr 0.95fr;
+          gap: 48px;
         }
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            margin: 0; 
-            color: var(--dark); 
-            line-height: 1.6; 
-            scroll-behavior: smooth; 
-            background: #fefefe;
+      }
+
+      .hero-meta {
+        margin-top: 28px;
+        padding-top: 22px;
+        border-top: 1px solid var(--border-subtle);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 18px;
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+      }
+
+      .kpi-strip {
+        margin-top: 56px;
+        padding-top: 32px;
+        border-top: 1px solid rgba(212, 175, 55, 0.16);
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+
+      @media (min-width: 820px) {
+        .kpi-strip {
+          grid-template-columns: repeat(4, 1fr);
         }
-        header { 
-            background: white; 
-            padding: 1rem 5%; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
-            flex-wrap: wrap;
+      }
+
+      .kpi-value {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: var(--gold-light);
+      }
+
+      .kpi-label {
+        margin-top: 4px;
+        font-size: 0.78rem;
+        color: var(--text-secondary);
+      }
+
+      /* Showcase Card */
+      .showcase-panel {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden;
+      }
+
+      .aura-glow {
+        position: absolute;
+        top: -96px;
+        right: -96px;
+        width: 280px;
+        height: 280px;
+        border-radius: 9999px;
+        background: linear-gradient(
+          to top right,
+          rgba(126, 82, 160, 0.4),
+          rgba(162, 72, 120, 0.3),
+          rgba(212, 175, 55, 0.35)
+        );
+        filter: blur(56px);
+        opacity: 0.45;
+        pointer-events: none;
+      }
+
+      .showcase-header {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+
+      .showcase-stage {
+        position: relative;
+        z-index: 1;
+        margin: 26px auto;
+        width: 100%;
+        max-width: 300px;
+        aspect-ratio: 1 / 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .showcase-footer {
+        position: relative;
+        z-index: 1;
+        padding-top: 16px;
+        border-top: 1px solid var(--border-subtle);
+      }
+
+      .segmented {
+        display: inline-flex;
+        gap: 4px;
+        padding: 4px;
+        border-radius: 12px;
+        background: rgba(12, 13, 18, 0.85);
+        border: 1px solid rgba(212, 175, 55, 0.18);
+      }
+
+      .seg-btn {
+        background: transparent;
+        border: 0;
+        color: var(--text-secondary);
+        padding: 8px 14px;
+        border-radius: 8px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: background-color 0.16s ease, color 0.16s ease;
+      }
+
+      .seg-btn.active {
+        background: var(--gold-old);
+        color: #0c0d12;
+        font-weight: 600;
+      }
+
+      /* Grids */
+      .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      @media (min-width: 720px) {
+        .grid-3 {
+          grid-template-columns: repeat(2, 1fr);
         }
-        .logo { 
-            font-size: 1.5rem; 
-            font-weight: bold; 
-            color: var(--primary); 
-            text-decoration: none; 
-            letter-spacing: -0.5px;
+      }
+
+      @media (min-width: 1024px) {
+        .grid-3 {
+          grid-template-columns: repeat(3, 1fr);
         }
-        .logo span { 
-            color: var(--accent); 
+      }
+
+      .grid-4 {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      @media (min-width: 640px) {
+        .grid-4 {
+          grid-template-columns: repeat(2, 1fr);
         }
-        nav a {
-            transition: color 0.2s ease;
-            text-decoration: none;
-            font-weight: bold;
+      }
+
+      @media (min-width: 1024px) {
+        .grid-4 {
+          grid-template-columns: repeat(4, 1fr);
         }
-        nav a:hover {
-            color: var(--accent) !important;
+      }
+
+      .split-12 {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 28px;
+        margin-top: 44px;
+        align-items: stretch;
+      }
+
+      @media (min-width: 960px) {
+        .split-12 {
+          grid-template-columns: 1.25fr 0.95fr;
         }
-        .hero { 
-            background: linear-gradient(135deg, var(--primary), var(--dark)); 
-            color: white; 
-            padding: 80px 10%; 
-            display: flex; 
-            align-items: center; 
-            flex-wrap: wrap; 
-            gap: 2rem;
+      }
+
+      .param-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-top: 24px;
+        padding-top: 22px;
+        border-top: 1px solid var(--border-subtle);
+      }
+
+      @media (min-width: 600px) {
+        .param-grid {
+          grid-template-columns: repeat(2, 1fr);
         }
-        .hero-text { 
-            flex: 1; 
-            min-width: 280px; 
+      }
+
+      .manual-list > div {
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+      }
+
+      .manual-list > div:first-child {
+        padding-top: 0;
+      }
+
+      .manual-list > div:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      /* Video */
+      .video-shell {
+        padding: 14px;
+      }
+
+      .video-aspect {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #08090d;
+      }
+
+      .video-aspect iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+
+      /* Circular Portrait & Template Frames */
+      .circle-frame {
+        width: 176px;
+        height: 176px;
+        border-radius: 9999px;
+        padding: 6px;
+        border: 1px solid rgba(212, 175, 55, 0.45);
+        background: #0c0d12;
+        margin: 0 auto;
+        overflow: hidden;
+        transition: border-color 0.2s ease;
+      }
+
+      .circle-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 9999px;
+        display: block;
+      }
+
+      .template-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        color: inherit;
+        transition: transform 0.18s ease;
+      }
+
+      .template-card:hover {
+        transform: translateY(-4px);
+      }
+
+      .template-card:hover .circle-frame {
+        border-color: var(--gold-light);
+      }
+
+      .template-card img {
+        filter: grayscale(100%) contrast(1.2);
+        transition: filter 0.25s ease;
+      }
+
+      .template-card:hover img {
+        filter: grayscale(0%) contrast(1.05);
+      }
+
+      .fallback-emblem {
+        width: 100%;
+        height: 100%;
+        border-radius: 9999px;
+        background: var(--bg-charcoal);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        text-align: center;
+      }
+
+      /* Modals */
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 60;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        background: rgba(0, 0, 0, 0.78);
+        backdrop-filter: blur(6px);
+      }
+
+      .modal-backdrop.open {
+        display: flex;
+      }
+
+      .modal-box {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        width: 38px;
+        height: 38px;
+        border-radius: 9999px;
+        border: 0;
+        background: transparent;
+        color: var(--text-secondary);
+        font-size: 1.2rem;
+        cursor: pointer;
+      }
+
+      .modal-close:hover {
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--text-primary);
+      }
+
+      footer {
+        border-top: 1px solid var(--border-subtle);
+        background: #0a0b0f;
+        padding: 36px 0;
+        font-size: 0.78rem;
+        color: var(--text-secondary);
+      }
+
+      .footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .footer-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 20px;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
         }
-        .hero-img { 
-            flex: 1; 
-            min-width: 280px; 
-            text-align: center; 
-            display: flex;
-            justify-content: center;
-        }
-        .video-demo-wrapper {
-            position: relative;
-            width: 80%;
-            max-width: 280px;
-            margin: 0 auto;
-            padding-bottom: 177.77%;
-            background: #000;
-            border-radius: 30px;
-            border: 8px solid rgba(255,255,255,0.2);
-            overflow: hidden;
-            box-shadow: 0 25px 40px rgba(0,0,0,0.5);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .video-demo-wrapper:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 30px 50px rgba(0,0,0,0.6);
-        }
-        .video-demo-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-        .showcase-section {
-            background: linear-gradient(120deg, #fef9f0, #fff5e8);
-            padding: 80px 10%;
-            text-align: center;
-        }
-        .showcase-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            gap: 3rem;
-        }
-        .showcase-video {
-            flex: 1;
-            min-width: 280px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .showcase-text {
-            flex: 1;
-            text-align: left;
-            min-width: 260px;
-        }
-        .showcase-text h2 {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-        .showcase-text p {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            color: #2c3e50;
-        }
-        .video-medium-wrapper {
-            position: relative;
-            width: 90%;
-            max-width: 320px;
-            padding-bottom: 177.77%;
-            background: #000;
-            border-radius: 28px;
-            border: 6px solid rgba(230,126,34,0.3);
-            overflow: hidden;
-            box-shadow: 0 20px 35px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-            margin-bottom: 15px;
-        }
-        .video-medium-wrapper:hover {
-            transform: scale(1.02);
-        }
-        .video-medium-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-        .badge-creative {
-            display: inline-block;
-            background: var(--accent);
-            color: white;
-            padding: 6px 14px;
-            border-radius: 40px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        h1 { 
-            font-size: 3rem; 
-            margin-bottom: 1rem; 
-            line-height: 1.1; 
-            font-weight: 800;
-        }
-        .btn { 
-            display: inline-block; 
-            padding: 15px 30px; 
-            border-radius: 50px; 
-            text-decoration: none; 
-            font-weight: bold; 
-            transition: 0.3s; 
-            margin-top: 15px; 
-            text-align: center; 
-            cursor: pointer;
-        }
-        .btn-play { 
-            background: #000000cc; 
-            color: white; 
-            border: 1px solid rgba(255,255,255,0.3);
-            backdrop-filter: blur(2px);
-        }
-        .btn-kit { 
-            background: var(--accent); 
-            color: white; 
-            margin-left: 10px;
-            border: none;
-        }
-        .btn:hover { 
-            transform: translateY(-3px); 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3); 
-            filter: brightness(1.05);
-        }
-        .whatsapp-float { 
-            position: fixed; 
-            bottom: 20px; 
-            right: 20px; 
-            background: var(--whatsapp); 
-            color: white; 
-            width: 60px; 
-            height: 60px; 
-            border-radius: 50px; 
-            text-align: center; 
-            font-size: 30px; 
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.2); 
-            z-index: 2000; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            text-decoration: none; 
-            transition: 0.2s;
-        }
-        .whatsapp-float:hover {
-            transform: scale(1.08);
-            background: #20b859;
-        }
-        section { 
-            padding: 80px 10%; 
-            text-align: center; 
-        }
-        .grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-            gap: 30px; 
-            margin-top: 40px; 
-        }
-        .card { 
-            padding: 30px; 
-            border-radius: 15px; 
-            background: white; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
-            border: 1px solid #eee; 
-            transition: all 0.2s;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 35px rgba(0,0,0,0.1);
-        }
-        .card i { 
-            font-size: 2.5rem; 
-            color: var(--accent); 
-            margin-bottom: 1rem; 
-        }
-        .product-box { 
-            background: #fff; 
-            display: flex; 
-            align-items: center; 
-            flex-wrap: wrap; 
-            text-align: left; 
-            border-radius: 20px; 
-            overflow: hidden; 
-            box-shadow: 0 15px 50px rgba(0,0,0,0.1); 
-            border: 1px solid #eee; 
-        }
-        .product-info { 
-            padding: 50px; 
-            flex: 1; 
-        }
-        .product-img { 
-            flex: 1; 
-            background: url('https://images.unsplash.com/photo-1515516089376-88db1e26e9c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80') no-repeat center; 
-            background-size: cover; 
-            min-height: 400px; 
-        }
-        .product-info ul li {
-            margin: 12px 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .product-info i.fa-check-circle {
-            font-size: 1.2rem;
-        }
-        footer { 
-            background: var(--primary); 
-            color: white; 
-            padding: 60px 10%; 
-            text-align: center; 
-        }
-        .social-links { 
-            margin: 25px 0; 
-        }
-        .social-links a { 
-            color: white; 
-            margin: 0 15px; 
-            font-size: 1.8rem; 
-            text-decoration: none; 
-            transition: 0.3s; 
-            display: inline-block;
-        }
-        .social-links a:hover { 
-            color: var(--accent); 
-            transform: scale(1.1);
-        }
-        @media (max-width: 768px) {
-            h1 { font-size: 2.2rem; }
-            .hero { padding: 40px 5%; text-align: center; flex-direction: column; }
-            .hero-text { padding-right: 0; text-align: center; }
-            .btn-kit { margin-left: 0; margin-top: 10px; width: 100%; display: block; }
-            .btn-play { width: 100%; display: block; margin-top: 15px; }
-            .product-info { padding: 30px; text-align: center; }
-            .product-info ul li { justify-content: center; }
-            .video-demo-wrapper { width: 70%; max-width: 260px; }
-            .showcase-container { flex-direction: column; text-align: center; }
-            .showcase-text { text-align: center; }
-            .video-medium-wrapper { width: 80%; margin-left: auto; margin-right: auto; }
-        }
+      }
     </style>
-</head>
-<body>
-
-    <a href="https://wa.me/5493855800941?text=Hola!%20Me%20interesa%20comprar%20un%20Kit%20de%20String%20Art" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
+  </head>
+  <body>
+    <!-- Fixed 3-Zone Header -->
     <header>
-        <a href="#" class="logo">MHELION<span>ART</span></a>
-        <nav>
-            <a href="https://play.google.com/store/apps/details?id=com.mhelionart.app" target="_blank" rel="noopener noreferrer" style="color:var(--dark); margin-right:20px;">App</a>
-            <a href="#kit" style="color:var(--dark);">Kits</a>
+      <div class="container header-inner">
+        <a href="#inicio" class="brand">
+          <svg width="34" height="34" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="hx-g" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#f3e5ab" />
+                <stop offset="50%" stop-color="#d4af37" />
+                <stop offset="100%" stop-color="#8c6b12" />
+              </linearGradient>
+              <linearGradient id="hx-c" x1="100%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#f4a470" />
+                <stop offset="50%" stop-color="#c86432" />
+                <stop offset="100%" stop-color="#8c5620" />
+              </linearGradient>
+              <linearGradient id="hx-r" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#c27165" />
+                <stop offset="50%" stop-color="#e8a598" />
+                <stop offset="100%" stop-color="#f7cac3" />
+              </linearGradient>
+            </defs>
+            <polygon points="50,5 90,27 90,73 50,95 10,73 10,27" stroke="url(#hx-g)" stroke-width="3.5" fill="#13141b" />
+            <polygon points="50,15 80,32 80,68 50,85 20,68 20,32" stroke="url(#hx-c)" stroke-width="1.4" stroke-dasharray="4 2" opacity="0.8" />
+            <line x1="50" y1="5" x2="50" y2="95" stroke="url(#hx-r)" stroke-width="1" opacity="0.45" />
+            <line x1="10" y1="27" x2="90" y2="73" stroke="url(#hx-r)" stroke-width="1" opacity="0.45" />
+            <line x1="10" y1="73" x2="90" y2="27" stroke="url(#hx-r)" stroke-width="1" opacity="0.45" />
+            <text x="50" y="67" fill="url(#hx-g)" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="48" font-weight="900">H</text>
+          </svg>
+          <span class="brand-wordmark text-gold-gradient">Hexa Studio Art</span>
+        </a>
+
+        <nav aria-label="Navegación principal">
+          <a href="#como-funciona">Cómo funciona</a>
+          <a href="#tutorial">Tutorial</a>
+          <a href="#insumos">Insumos</a>
+          <a href="#plantillas">Plantillas</a>
+          <a href="#contacto">Contacto</a>
         </nav>
+
+        <a
+          class="btn btn-wa btn-sm"
+          href="https://wa.me/5493855800941?text=Hola%20Hexa%20Studio%20Art!%20%F0%9F%91%8B%20Me%20interesa%20comprar%20el%20Kit%20Pro%20Maestro.%20%C2%BFTienen%20stock%20disponible%20para%20env%C3%ADo%3F"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          WhatsApp Ventas
+        </a>
+      </div>
     </header>
 
-    <section class="hero">
-        <div class="hero-text">
-            <h1>Crea Arte con Hilos desde tu Celular</h1>
-            <p>Con <b>Mhelion Art</b>, convierte tus fotos favoritas en impresionantes obras de String Art. Genera patrones automáticos y dale vida a tus paredes.</p>
-            <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 10px;">
-                <a href="https://play.google.com/store/apps/details?id=com.mhelionart.app" class="btn btn-play" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-google-play"></i> Descargar en Play Store
+    <main>
+      <!-- Hero -->
+      <section id="inicio" class="hero">
+        <div class="container">
+          <div class="hero-grid">
+            <div style="display:flex;flex-direction:column;justify-content:center;">
+              <p class="kicker">Santiago del Estero, Argentina · Por Fernando Morales</p>
+              <h1 class="text-gold-gradient">Transforma tus fotos en arte geométrico con hilos</h1>
+              <p class="lead">
+                Hexa Studio Art convierte cualquier fotografía en una obra física de String Art (hilograma) sobre bastidor circular de 240 clavos/pines, guiando al artista paso a paso de forma visual y por voz sin enviar fotos a servidores externos (procesamiento 100% local en el dispositivo).
+              </p>
+
+              <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:32px;">
+                <a
+                  class="btn btn-wa"
+                  href="https://wa.me/5493855800941?text=Hola%20Hexa%20Studio%20Art!%20%F0%9F%91%8B%20Me%20interesa%20comprar%20el%20Kit%20Pro%20Maestro.%20%C2%BFTienen%20stock%20disponible%20para%20env%C3%ADo%3F"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Escribir por WhatsApp
                 </a>
-                <a href="#kit" class="btn btn-kit">Ver Kits de Venta</a>
-            </div>
-        </div>
-        <div class="hero-img">
-            <div class="video-demo-wrapper">
-                <iframe 
-                    src="https://www.youtube.com/embed/RRI1O4xWln4?modestbranding=1&rel=0&showinfo=0&controls=1&color=white" 
-                    title="Mhelion Art - Demostración de String Art" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    referrerpolicy="strict-origin-when-cross-origin" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-        </div>
-    </section>
-
-    <section id="app">
-        <h2>¿Cómo funciona la App?</h2>
-        <div class="grid">
-            <div class="card">
-                <i class="fas fa-camera"></i>
-                <h3>1. Sube tu foto</h3>
-                <p>Elige cualquier retrato o imagen desde tu galería. La app prepara el lienzo.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-cogs"></i>
-                <h3>2. Genera el patrón</h3>
-                <p>Nuestra tecnología calcula el orden exacto de los hilos y la secuencia óptima.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-hammer"></i>
-                <h3>3. Manos a la obra</h3>
-                <p>Sigue la guía paso a paso para crear tu cuadro físico con acabado profesional.</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="showcase-section">
-        <div class="showcase-container">
-            <div class="showcase-video">
-                <div class="video-medium-wrapper">
-                    <iframe 
-                        src="https://www.youtube.com/embed/EL91_Wok2IQ?modestbranding=1&rel=0&showinfo=0&controls=1" 
-                        title="Mujer con perlas - String Art by Mhelion Art" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                <span class="badge-creative"><i class="fas fa-play-circle"></i> Proceso creativo</span>
-            </div>
-            <div class="showcase-text">
-                <h2>✨ La Mujer con Perlas ✨</h2>
-                <p>Inspirado en la elegancia atemporal, nuestro arte con hilos da vida a detalles únicos. Observa cómo la combinación de precisión y creatividad transforma un diseño clásico en una obra de textura y color.</p>
-                <p><i class="fas fa-check-circle" style="color: var(--accent);"></i> <strong>¡Disponible como plantilla en la app!</strong> Encuentra este diseño y muchos más dentro de Mhelion Art para crear tu propia versión paso a paso.</p>
-                <p><i class="fas fa-magic" style="color: var(--accent);"></i> Cada hilo sigue una secuencia exacta, logrando efectos de luz y volumen increíbles.</p>
-                <a href="https://wa.me/5493855800941?text=Me%20encantó%20el%20video%20de%20la%20Mujer%20con%20Perlas!%20Quiero%20mi%20kit" class="btn btn-kit" style="margin-top: 20px; display: inline-block;">Inspírate y crea el tuyo</a>
-            </div>
-        </div>
-    </div>
-
-    <section id="kit" style="background:#fcfcfc;">
-        <div class="product-box">
-            <div class="product-info">
-                <span style="color:var(--accent); font-weight:bold; text-transform:uppercase; letter-spacing:1px;">🔥 Producto Disponible 🔥</span>
-                <h2 style="margin: 15px 0 10px 0;">Kit Premium String Art</h2>
-                <p>Incluye todo lo necesario para que no tengas que buscar nada por separado. Compatible 100% con la app Mhelion Art.</p>
-                <ul style="list-style: none; padding: 0; margin: 25px 0;">
-                    <li><i class="fas fa-check-circle" style="color:var(--accent); width: 24px;"></i> Tablero de madera curada y perforada (alta precisión).</li>
-                    <li><i class="fas fa-check-circle" style="color:var(--accent); width: 24px;"></i> Clavos de acero de alta precisión + martillo de emergencia.</li>
-                    <li><i class="fas fa-check-circle" style="color:var(--accent); width: 24px;"></i> Hilo artístico de alta resistencia (varios colores incluidos).</li>
-                    <li><i class="fas fa-check-circle" style="color:var(--accent); width: 24px;"></i> Guía exclusiva para usar con la app + patrones de regalo.</li>
-                </ul>
-                <a href="https://wa.me/5493855800941?text=Hola!%20Deseo%20comprar%20el%20Kit%20Premium%20de%20String%20Art" class="btn btn-kit" style="margin-left:0; padding: 18px 40px; display: inline-block; font-size: 1.1rem;">
-                    📦 PEDIR POR WHATSAPP
+                <a
+                  class="btn btn-ml"
+                  href="https://www.mercadolibre.com.ar/pagina/mhelionart"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Tienda Mercado Libre ↗
                 </a>
-            </div>
-            <div class="product-img"></div>
-        </div>
-    </section>
+              </div>
 
-    <section style="background: linear-gradient(120deg, #f8f9fa, #ffffff); padding: 60px 10%;">
-        <div style="max-width: 800px; margin: 0 auto;">
-            <h2 style="color: var(--primary);">🎬 Inspiración en acción</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 20px;">Descubre cómo el arte con hilos cobra vida con Mhelion Art. Nuestra app convierte cualquier diseño en un mapa de hilos preciso.</p>
-            <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 20px;">
-                <div style="background: var(--accent); color: white; border-radius: 40px; padding: 8px 20px; font-weight: bold;">
-                    <i class="fas fa-star"></i> +500 creaciones realizadas
-                </div>
-                <div style="background: var(--primary); color: white; border-radius: 40px; padding: 8px 20px; font-weight: bold;">
-                    <i class="fas fa-palette"></i> Arte sostenible
-                </div>
+              <div class="hero-meta">
+                <span>Antes Mhelion Art Pro</span>
+                <span aria-hidden="true">·</span>
+                <span class="mono">App v3.5</span>
+                <span aria-hidden="true">·</span>
+                <span>Procesamiento 100% offline en tu dispositivo</span>
+              </div>
             </div>
+
+            <!-- Ideal Reference Portrait Card -->
+            <div class="glass-card showcase-panel">
+              <div class="aura-glow" aria-hidden="true"></div>
+
+              <div class="showcase-header">
+                <span class="kicker" style="margin:0;">Referencia Ideal</span>
+                <span class="mono" style="font-size:0.75rem;color:var(--text-secondary);">
+                  Bastidor 240 pines
+                </span>
+              </div>
+
+              <div class="showcase-stage">
+                <div class="circle-frame" style="width:100%;height:100%;max-width:300px;max-height:300px;padding:8px;">
+                  <img
+                    src="https://i.pinimg.com/736x/53/61/34/536134b41ceb546f30b61428e0989560.jpg"
+                    alt="Referencia Ideal (rostro cercano, bajo contraste)"
+                    referrerpolicy="no-referrer"
+                    onerror="this.parentNode.innerHTML='<div class=\'fallback-emblem\'><span class=\'font-display\' style=\'font-size:1.5rem;color:#f3e5ab;\'>Hexa Studio Art</span></div>'"
+                  />
+                </div>
+              </div>
+
+              <div class="showcase-footer">
+                <p style="margin:0;font-size:0.78rem;color:var(--text-secondary);">
+                  <strong style="color:var(--text-primary);">Referencia Ideal (rostro cercano, bajo contraste):</strong>
+                  Rostro cercano con iluminación uniforme y fondo blanco liso para lograr la máxima definición en el tejido.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="kpi-strip">
+            <div>
+              <div class="kpi-value mono">240</div>
+              <div class="kpi-label">Clavos perimetrales en sentido horario (0–239)</div>
+            </div>
+            <div>
+              <div class="kpi-value mono">2.700–3.500</div>
+              <div class="kpi-label">Trayectorias de hilo configurables en pasos de 100</div>
+            </div>
+            <div>
+              <div class="kpi-value mono">100% Local</div>
+              <div class="kpi-label">Tus fotografías jamás se suben a servidores externos</div>
+            </div>
+            <div>
+              <div class="kpi-value mono">6 Idiomas</div>
+              <div class="kpi-label">Español, Inglés, Portugués, Francés, Alemán y Ruso</div>
+            </div>
+          </div>
         </div>
-    </section>
+      </section>
+
+      <!-- How It Works -->
+      <section id="como-funciona">
+        <div class="container">
+          <div class="section-intro">
+            <p class="kicker">Flujo de Trabajo en Estudio</p>
+            <h2>Cómo funciona paso a paso</h2>
+            <p class="lead">
+              Desde la selección de la fotografía hasta el tejido guiado por voz sobre tu bastidor de 240 pines.
+            </p>
+          </div>
+
+          <div class="grid-3">
+            <article class="glass-card">
+              <div class="mono" style="font-size:0.75rem;color:var(--gold-old);">01.</div>
+              <h3 style="font-size:1.6rem;margin-top:8px;">Crear Obra (Estudio)</h3>
+              <p style="margin:12px 0 0;font-size:0.9rem;color:var(--text-secondary);">
+                El usuario sube una foto desde cámara o galería. Se recomiendan rostros completos con fondo blanco liso y bajo contraste.
+              </p>
+            </article>
+
+            <article class="glass-card">
+              <div class="mono" style="font-size:0.75rem;color:var(--gold-old);">02.</div>
+              <h3 style="font-size:1.6rem;margin-top:8px;">Ajuste Maestro</h3>
+              <p style="margin:12px 0 0;font-size:0.9rem;color:var(--text-secondary);">
+                Recorte circular interactivo arrastrando la foto con zoom/escala (50% a 300%), ajuste de contraste (50% a 200%) y cantidad de hilos (2.700 a 3.500).
+              </p>
+            </article>
+
+            <article class="glass-card">
+              <div class="mono" style="font-size:0.75rem;color:var(--gold-old);">03.</div>
+              <h3 style="font-size:1.6rem;margin-top:8px;">Generación en Tiempo Real</h3>
+              <p style="margin:12px 0 0;font-size:0.9rem;color:var(--text-secondary);">
+                Pantalla de progreso circular metalizada que calcula y dibuja en vivo las trayectorias HD.
+              </p>
+            </article>
+
+            <article class="glass-card">
+              <div class="mono" style="font-size:0.75rem;color:var(--gold-old);">04.</div>
+              <h3 style="font-size:1.6rem;margin-top:8px;">Asistente de Ensamble (Tejido)</h3>
+              <p style="margin:12px 0 0;font-size:0.9rem;color:var(--text-secondary);">
+                Lienzo blanco con pines pasados, hilo activo destacado, pin destino gigante, barra de progreso, Auto-Play (0.2x a 1.0x), dictado por voz automático, salto a paso y modo enfoque.
+              </p>
+            </article>
+
+            <article class="glass-card">
+              <div class="mono" style="font-size:0.75rem;color:var(--gold-old);">05.</div>
+              <h3 style="font-size:1.6rem;margin-top:8px;">Galería (Plantillas y Proyectos)</h3>
+              <p style="margin:12px 0 0;font-size:0.9rem;color:var(--text-secondary);">
+                Pestaña izquierda de Plantillas precalculadas listas para tejer y pestaña derecha de Proyectos personales guardados en el dispositivo.
+              </p>
+            </article>
+
+            <article class="glass-card">
+              <div class="mono" style="font-size:0.75rem;color:var(--gold-old);">06.</div>
+              <h3 style="font-size:1.6rem;margin-top:8px;">Insumos Pro y Guía Física PDF</h3>
+              <p style="margin:12px 0 0;font-size:0.9rem;color:var(--text-secondary);">
+                Descarga gratuita de la Guía Numerada de 75 cm dividida en 16 hojas A4 (grilla 4×4) para pegar en madera y clavar los 240 puntos, más compra directa de insumos.
+              </p>
+            </article>
+          </div>
+
+          <div class="split-12">
+            <!-- Algorithm -->
+            <div class="glass-card" style="display:flex;flex-direction:column;justify-content:space-between;">
+              <div>
+                <p class="kicker" style="color:var(--rose-gold);">Motor de Cálculo</p>
+                <h3 style="font-size:1.95rem;color:var(--gold-light);">
+                  Algoritmo Hexa (Greedy Iterative Subtraction)
+                </h3>
+                <p style="margin:8px 0 0;font-size:0.9rem;color:var(--text-secondary);">
+                  Diseñado por Fernando Morales para maximizar fidelidad tonal sobre bastidores circulares.
+                </p>
+                <ol style="margin:22px 0 0;padding:20px 0 0;border-top:1px solid var(--border-subtle);list-style:none;display:grid;gap:12px;font-size:0.9rem;color:var(--text-secondary);">
+                  <li><span class="mono" style="color:var(--gold-old);margin-right:8px;">01.</span> Conversión a escala de grises ponderada e inversión de luminancia.</li>
+                  <li><span class="mono" style="color:var(--gold-old);margin-right:8px;">02.</span> Máscara circular de 240 pines distribuidos en sentido horario (0 a 239).</li>
+                  <li><span class="mono" style="color:var(--gold-old);margin-right:8px;">03.</span> Evaluación iterativa de trayectorias para elegir la cuerda que mejor captura densidad oscura.</li>
+                  <li><span class="mono" style="color:var(--gold-old);margin-right:8px;">04.</span> Sustracción progresiva de intensidad en el lienzo virtual tras cada hilo calculado.</li>
+                </ol>
+              </div>
+
+              <div class="param-grid">
+                <div>
+                  <div style="font-size:0.75rem;color:var(--text-secondary);">Pines perimetrales</div>
+                  <div class="mono" style="font-size:0.9rem;font-weight:500;">240 (0 a 239 horario)</div>
+                </div>
+                <div>
+                  <div style="font-size:0.75rem;color:var(--text-secondary);">Lienzo virtual</div>
+                  <div class="mono" style="font-size:0.9rem;font-weight:500;">600 × 600 px</div>
+                </div>
+                <div>
+                  <div style="font-size:0.75rem;color:var(--text-secondary);">Rango de hilos</div>
+                  <div class="mono" style="font-size:0.9rem;font-weight:500;">2.700 a 3.500 (pasos de 100)</div>
+                </div>
+                <div>
+                  <div style="font-size:0.75rem;color:var(--text-secondary);">Peso / Distancia mínima</div>
+                  <div class="mono" style="font-size:0.9rem;font-weight:500;">Peso 28 · Mín. 20 pines</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- User Manual -->
+            <div class="glass-card" style="display:flex;flex-direction:column;justify-content:space-between;">
+              <div>
+                <p class="kicker">Manual de Usuario</p>
+                <h3 style="font-size:1.95rem;">4 claves para un tejido nítido</h3>
+
+                <div class="manual-list" style="margin-top:22px;">
+                  <div>
+                    <div style="font-size:0.9rem;font-weight:600;">
+                      <span class="mono" style="color:var(--gold-old);margin-right:8px;">01.</span>Luz y Contraste
+                    </div>
+                    <p style="margin:4px 0 0 28px;font-size:0.875rem;color:var(--text-secondary);">
+                      Usa fotos con fondo blanco liso.
+                    </p>
+                  </div>
+                  <div>
+                    <div style="font-size:0.9rem;font-weight:600;">
+                      <span class="mono" style="color:var(--gold-old);margin-right:8px;">02.</span>Tensión de Hilo
+                    </div>
+                    <p style="margin:4px 0 0 28px;font-size:0.875rem;color:var(--text-secondary);">
+                      Mantén siempre el hilo tenso.
+                    </p>
+                  </div>
+                  <div>
+                    <div style="font-size:0.9rem;font-weight:600;">
+                      <span class="mono" style="color:var(--gold-old);margin-right:8px;">03.</span>Sentido del Hilo
+                    </div>
+                    <p style="margin:4px 0 0 28px;font-size:0.875rem;color:var(--text-secondary);">
+                      Pasa los hilos siempre en sentido horario.
+                    </p>
+                  </div>
+                  <div>
+                    <div style="font-size:0.9rem;font-weight:600;">
+                      <span class="mono" style="color:var(--gold-old);margin-right:8px;">04.</span>Ajustar Contrastes y Escala
+                    </div>
+                    <p style="margin:4px 0 0 28px;font-size:0.875rem;color:var(--text-secondary);">
+                      Regula el contraste y la escala para encuadrar y definir mejor los rasgos antes de generar.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top:24px;padding-top:18px;border-top:1px solid var(--border-subtle);font-size:0.8rem;color:var(--gold-light);">
+                Recomendación de taller: Los mejores resultados son con rostros completos con bajo contraste. Se recomienda tomar un descanso cada 300 puntos para ajustar la profundidad del hilo.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Video Tutorial -->
+      <section id="tutorial">
+        <div class="container">
+          <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:36px;">
+            <div style="max-width:640px;">
+              <p class="kicker">Demostración en Video</p>
+              <h2>Tutorial Hexa Studio Art</h2>
+              <p class="lead">
+                Mirá cómo preparar el bastidor, ajustar el encuadre maestro y utilizar el asistente de tejido con dictado por voz.
+              </p>
+            </div>
+            <a
+              class="btn btn-outline"
+              href="https://www.youtube.com/watch?v=oc6Pd-_NXT0"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ver en YouTube ↗
+            </a>
+          </div>
+
+          <div class="glass-card video-shell">
+            <div class="video-aspect">
+              <iframe
+                src="https://www.youtube.com/embed/oc6Pd-_NXT0?rel=0"
+                title="Tutorial Hexa Studio Art"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pro Supplies -->
+      <section id="insumos">
+        <div class="container">
+          <div class="section-intro">
+            <p class="kicker">Insumos Pro y Plantilla Física</p>
+            <h2>Todo lo necesario para llevar tu obra a la madera</h2>
+          </div>
+
+          <div class="split-12" style="margin-top:0;">
+            <article class="glass-card" style="display:flex;flex-direction:column;justify-content:space-between;">
+              <div>
+                <div style="font-size:0.78rem;font-weight:600;color:var(--gold-old);">
+                  Completo · Bastidor 64 cm · 240 clavos · Hilo tipo seda
+                </div>
+                <h3 class="text-gold-gradient" style="font-size:2.3rem;margin-top:10px;">
+                  Kit Pro Maestro
+                </h3>
+                <p class="lead" style="font-size:0.95rem;">
+                  El set para completar tu arte: bastidor clavado y numerado de 64 cm, con hilo tipo seda de alta tenacidad, máxima precisión y acabado profesional.
+                </p>
+
+                <div style="margin-top:28px;padding-top:22px;border-top:1px solid var(--border-subtle);display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+                  <div>
+                    <div class="mono" style="font-size:1.15rem;font-weight:600;">64 cm</div>
+                    <div style="font-size:0.75rem;color:var(--text-secondary);">Bastidor clavado</div>
+                  </div>
+                  <div>
+                    <div class="mono" style="font-size:1.15rem;font-weight:600;">0 – 239</div>
+                    <div style="font-size:0.75rem;color:var(--text-secondary);">Numeración horaria</div>
+                  </div>
+                  <div>
+                    <div class="mono" style="font-size:1.15rem;font-weight:600;">Tipo Seda</div>
+                    <div style="font-size:0.75rem;color:var(--text-secondary);">Alta tenacidad</div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:32px;">
+                <a
+                  class="btn btn-wa"
+                  href="https://wa.me/5493855800941?text=Hola%20Hexa%20Studio%20Art!%20%F0%9F%91%8B%20Me%20interesa%20comprar%20el%20Kit%20Pro%20Maestro.%20%C2%BFTienen%20stock%20disponible%20para%20env%C3%ADo%3F"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Comprar por WhatsApp
+                </a>
+                <a
+                  class="btn btn-ml"
+                  href="https://www.mercadolibre.com.ar/pagina/mhelionart"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ver en Mercado Libre ↗
+                </a>
+              </div>
+            </article>
+
+            <article class="glass-card" style="display:flex;flex-direction:column;justify-content:space-between;">
+              <div>
+                <div style="font-size:0.78rem;font-weight:600;color:var(--rose-gold);">
+                  Descarga gratuita en App
+                </div>
+                <h3 style="font-size:2rem;margin-top:10px;">Guía Numerada 75 cm</h3>
+                <p style="margin:12px 0 0;font-size:0.9rem;color:var(--text-secondary);">
+                  Guía PDF de 75 cm dividida en 16 hojas A4 (4×4) con los 240 pines numerados en sentido horario para armar tu propio bastidor.
+                </p>
+              </div>
+
+              <div style="margin:26px 0;padding:18px;border-radius:16px;background:var(--bg-body);border:1px solid rgba(212,175,55,0.16);display:flex;align-items:center;gap:18px;">
+                <svg width="88" height="88" viewBox="0 0 120 120" style="flex-shrink:0;" aria-hidden="true">
+                  <rect x="8" y="8" width="104" height="104" fill="none" stroke="rgba(212,175,55,0.35)" stroke-width="1" />
+                  <line x1="34" y1="8" x2="34" y2="112" stroke="rgba(255,255,255,0.12)" stroke-width="0.7" />
+                  <line x1="60" y1="8" x2="60" y2="112" stroke="rgba(255,255,255,0.12)" stroke-width="0.7" />
+                  <line x1="86" y1="8" x2="86" y2="112" stroke="rgba(255,255,255,0.12)" stroke-width="0.7" />
+                  <line x1="8" y1="34" x2="112" y2="34" stroke="rgba(255,255,255,0.12)" stroke-width="0.7" />
+                  <line x1="8" y1="60" x2="112" y2="60" stroke="rgba(255,255,255,0.12)" stroke-width="0.7" />
+                  <line x1="8" y1="86" x2="112" y2="86" stroke="rgba(255,255,255,0.12)" stroke-width="0.7" />
+                  <circle cx="60" cy="60" r="44" fill="none" stroke="#d4af37" stroke-width="1.5" stroke-dasharray="2 2" />
+                  <circle cx="60" cy="16" r="2.2" fill="#f3e5ab" />
+                </svg>
+                <div>
+                  <div class="mono" style="font-size:0.88rem;font-weight:600;color:var(--gold-light);">
+                    16 hojas A4 (4×4)
+                  </div>
+                  <p style="margin:4px 0 0;font-size:0.78rem;color:var(--text-secondary);">
+                    Imprimí, uní las 16 láminas sobre tu tablero de madera y clavá exactamente los 240 puntos.
+                  </p>
+                </div>
+              </div>
+
+              <div class="mono" style="font-size:0.75rem;color:var(--text-secondary);">
+                Disponible gratis dentro de Hexa Studio Art
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Template Gallery -->
+      <section id="plantillas">
+        <div class="container">
+          <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:44px;">
+            <div style="max-width:640px;">
+              <p class="kicker">Galería e Inspiración</p>
+              <h2>Plantillas listas para tejer en tu bastidor</h2>
+              <p class="lead">
+                Obras precalculadas dentro de la app junto a tus proyectos personales guardados localmente en el dispositivo.
+              </p>
+            </div>
+
+            <div class="segmented" role="group" aria-label="Filtrar plantillas por dificultad">
+              <button type="button" class="seg-btn active" data-filter="Todas">Todas</button>
+              <button type="button" class="seg-btn" data-filter="Fácil">Fácil</button>
+              <button type="button" class="seg-btn" data-filter="Media">Media</button>
+              <button type="button" class="seg-btn" data-filter="Avanzada">Avanzada</button>
+            </div>
+          </div>
+
+          <div id="gallery-grid" class="grid-4"></div>
+
+          <div class="glass-card" style="margin-top:40px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;">
+            <div style="display:flex;align-items:center;gap:18px;max-width:740px;">
+              <div class="circle-frame" style="width:68px;height:68px;margin:0;padding:3px;flex-shrink:0;">
+                <img
+                  src="https://i.pinimg.com/736x/53/61/34/536134b41ceb546f30b61428e0989560.jpg"
+                  alt="Referencia Ideal"
+                  referrerpolicy="no-referrer"
+                />
+              </div>
+              <div>
+                <h3 style="font-size:1.3rem;color:var(--gold-light);">
+                  Referencia Ideal (rostro cercano, bajo contraste)
+                </h3>
+                <p style="margin:4px 0 0;font-size:0.85rem;color:var(--text-secondary);">
+                  Los mejores resultados son con rostros completos con bajo contraste. Se recomienda tomar un descanso cada 300 puntos para ajustar la profundidad del hilo.
+                </p>
+              </div>
+            </div>
+            <a
+              class="btn btn-outline"
+              href="https://wa.me/5493855800941?text=Hola%20Hexa%20Studio%20Art!%20%F0%9F%91%8B%20Me%20interesa%20comprar%20el%20Kit%20Pro%20Maestro.%20%C2%BFTienen%20stock%20disponible%20para%20env%C3%ADo%3F"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Consultar obra personalizada ↗
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Direct Contact -->
+      <section id="contacto">
+        <div class="container">
+          <div class="section-intro">
+            <p class="kicker">Atención Personalizada</p>
+            <h2>Contacto directo y medios de pago</h2>
+            <p class="lead">
+              Consultá disponibilidad de envíos, pedidos mayoristas o soporte técnico de la aplicación directamente con Fernando Morales.
+            </p>
+          </div>
+
+          <div class="grid-4">
+            <div class="glass-card" style="display:flex;flex-direction:column;justify-content:space-between;">
+              <div>
+                <div style="font-size:0.75rem;color:var(--whatsapp);font-weight:600;">WhatsApp</div>
+                <h3 style="font-size:1.55rem;margin-top:12px;">Consultas y Ventas</h3>
+                <p class="mono" style="margin:6px 0 0;font-size:0.88rem;color:var(--gold-light);">
+                  +54 9 385 5800941
+                </p>
+              </div>
+              <div style="display:flex;gap:8px;margin-top:24px;">
+                <a
+                  class="btn btn-wa btn-sm"
+                  style="flex:1;"
+                  href="https://wa.me/5493855800941"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Abrir chat ↗
+                </a>
+                <button type="button" class="btn btn-outline btn-sm copy-trigger" data-copy="+54 9 385 5800941">
+                  Copiar
+                </button>
+              </div>
+            </div>
+
+            <div class="glass-card" style="display:flex;flex-direction:column;justify-content:space-between;">
+              <div>
+                <div style="font-size:0.75rem;color:var(--ml-yellow);font-weight:600;">Mercado Libre</div>
+                <h3 style="font-size:1.55rem;margin-top:12px;">Tienda Oficial</h3>
+                <p style="margin:6px 0 0;font-size:0.85rem;color:var(--text-secondary);">
+                  Mhelion Art / Hexa Studio Art en Mercado Libre Argentina
+                </p>
+              </div>
+              <div style="margin-top:24px;">
+                <a
+                  class="btn btn-ml btn-sm"
+                  style="width:100%;"
+                  href="https://www.mercadolibre.com.ar/pagina/mhelionart"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Visitar tienda ↗
+                </a>
+              </div>
+            </div>
+
+            <div class="glass-card" style="display:flex;flex-direction:column;justify-content:space-between;">
+              <div>
+                <div style="font-size:0.75rem;color:var(--rose-gold);font-weight:600;">Correo</div>
+                <h3 style="font-size:1.55rem;margin-top:12px;">Email Directo</h3>
+                <p style="margin:6px 0 0;font-size:0.85rem;color:var(--gold-light);word-break:break-all;">
+                  Fernando.hmorales@gmail.com
+                </p>
+              </div>
+              <div style="display:flex;gap:8px;margin-top:24px;">
+                <a class="btn btn-outline btn-sm" style="flex:1;" href="mailto:Fernando.hmorales@gmail.com">
+                  Enviar correo
+                </a>
+                <button type="button" class="btn btn-outline btn-sm copy-trigger" data-copy="Fernando.hmorales@gmail.com">
+                  Copiar
+                </button>
+              </div>
+            </div>
+
+            <div class="glass-card" style="display:flex;flex-direction:column;justify-content:space-between;">
+              <div>
+                <div style="font-size:0.75rem;color:var(--gold-old);font-weight:600;">Mercado Pago</div>
+                <h3 style="font-size:1.55rem;margin-top:12px;">Alias Transferencia</h3>
+                <p class="mono" style="margin:6px 0 0;font-size:1rem;font-weight:500;color:var(--gold-light);">
+                  mhelion.art
+                </p>
+              </div>
+              <div style="margin-top:24px;">
+                <button
+                  type="button"
+                  class="btn btn-gold btn-sm copy-trigger"
+                  style="width:100%;"
+                  data-copy="mhelion.art"
+                >
+                  Copiar alias
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
 
     <footer>
-        <div class="logo" style="color:white; font-size: 2rem; margin-bottom: 15px;">MHELION<span style="color:var(--accent);">ART</span></div>
-        <p>Síguenos en nuestras redes sociales para tutoriales, nuevos diseños y promociones exclusivas.</p>
-        
-        <div class="social-links">
-            <a href="https://www.instagram.com/mhelion.art/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/profile.php?id=61552727421114" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
-            <a href="https://wa.me/5493855800941" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://play.google.com/store/apps/details?id=com.mhelionart.app" target="_blank" rel="noopener noreferrer"><i class="fab fa-google-play"></i></a>
+      <div class="container footer-inner">
+        <div>
+          <div style="color:var(--text-primary);font-weight:500;">
+            Hexa Studio Art · Fernando Morales · Santiago del Estero, Argentina
+          </div>
+          <div class="mono" style="font-size:0.72rem;margin-top:4px;">
+            com.mhelionart.app · v3.5 · Idiomas: ES · EN · PT · FR · DE · RU
+          </div>
         </div>
-        
-        <div style="margin: 30px 0 20px;">
-            <a href="https://www.mercadolibre.com.ar/pagina/mhelionart#component=menu_corridors&label=Todos+los+productos&global_position=1" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               class="btn" 
-               style="background-color: #ffe600; color: #333; font-weight: bold; border-radius: 8px; padding: 12px 28px; display: inline-flex; align-items: center; gap: 10px; text-decoration: none; transition: all 0.2s ease; border: none;">
-                <i class="fas fa-store" style="font-size: 1.2rem;"></i> 
-                Visitar tienda en Mercado Libre
-            </a>
+        <div class="footer-actions">
+          <button
+            type="button"
+            id="open-privacy-btn"
+            style="background:transparent;border:0;color:var(--text-secondary);font-size:0.78rem;cursor:pointer;padding:4px 0;"
+          >
+            Política de Privacidad
+          </button>
+          <a
+            href="/contacto.html"
+            download="hexa-studio-art.html"
+            style="color:var(--gold-light);font-size:0.78rem;"
+          >
+            Descargar archivo .html
+          </a>
         </div>
-        
-        <p style="opacity: 0.7; font-size: 0.9rem; margin-top: 20px;">&copy; 2026 Mhelion Art. Hecho con pasión por el arte con hilos.</p>
-        <p style="opacity: 0.5; font-size: 0.8rem;">📍 Santiago del Estero, Argentina · Envíos a todo el país | Transforma tu creatividad</p>
+      </div>
     </footer>
 
+    <!-- Template Detail Modal -->
+    <div id="template-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-tpl-title">
+      <div class="glass-card modal-box" style="text-align:center;">
+        <button type="button" class="modal-close" id="close-tpl-modal" aria-label="Cerrar">✕</button>
+        <div class="circle-frame" style="width:184px;height:184px;" id="modal-tpl-img-wrap"></div>
+        <h3 id="modal-tpl-title" class="text-gold-gradient" style="font-size:2rem;margin-top:18px;"></h3>
+        <p id="modal-tpl-meta" class="mono" style="font-size:0.82rem;color:var(--text-secondary);margin:8px 0 0;"></p>
+        <p style="font-size:0.88rem;color:var(--text-secondary);margin:14px 0 0;">
+          Plantilla precalculada para bastidor circular de 240 pines numerados en sentido horario. Compatible con el Asistente de Ensamble por voz y el Kit Pro Maestro de 64 cm.
+        </p>
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:24px;">
+          <a id="modal-tpl-wa" class="btn btn-wa btn-sm" href="#" target="_blank" rel="noopener noreferrer">
+            Pedir kit para esta obra ↗
+          </a>
+          <button type="button" id="close-tpl-btn" class="btn btn-outline btn-sm">Cerrar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacy-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+      <div class="glass-card modal-box">
+        <button type="button" class="modal-close" id="close-privacy-modal" aria-label="Cerrar">✕</button>
+        <h3 id="privacy-title" style="font-size:1.8rem;color:var(--gold-light);">Política de Privacidad</h3>
+        <div style="margin-top:14px;font-size:0.88rem;color:var(--text-secondary);display:grid;gap:10px;">
+          <p style="margin:0;">
+            <strong style="color:var(--text-primary);">Procesamiento 100% local:</strong> Hexa Studio Art (paquete <span class="mono">com.mhelionart.app</span>) procesa todas las fotografías, recortes y cálculos del Algoritmo Hexa íntegramente en tu dispositivo.
+          </p>
+          <p style="margin:0;">
+            Ninguna imagen ni proyecto personal se envía, almacena o comparte con servidores externos. Los proyectos guardados permanecen únicamente en el almacenamiento local del usuario.
+          </p>
+          <p style="margin:0;">
+            Consultas por correo a <a href="mailto:Fernando.hmorales@gmail.com" style="color:var(--gold-light);text-decoration:underline;">Fernando.hmorales@gmail.com</a>.
+          </p>
+        </div>
+        <div style="margin-top:22px;display:flex;justify-content:flex-end;">
+          <button type="button" id="close-privacy-btn" class="btn btn-gold btn-sm">Entendido</button>
+        </div>
+      </div>
+    </div>
+
     <script>
-        document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const targetId = this.getAttribute('href');
-                if (targetId === "#" || targetId === "") return;
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    e.preventDefault();
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+      (function () {
+        const templates = [
+          {
+            name: 'Perlas',
+            difficulty: 'Avanzada',
+            threadMeters: 1850,
+            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Meisje_met_de_parel.jpg/250px-Meisje_met_de_parel.jpg'
+          },
+          {
+            name: 'Harry Potter',
+            difficulty: 'Avanzada',
+            threadMeters: 2100,
+            image: 'https://sm.ign.com/t/ign_es/cover/h/harry-pott/harry-potter-the-series_kv32.600.jpg'
+          },
+          {
+            name: 'Sanji',
+            difficulty: 'Avanzada',
+            threadMeters: 3500,
+            image: 'https://i.ibb.co/fV3WhyNP/images-15.jpg'
+          },
+          {
+            name: 'Gris',
+            difficulty: 'Avanzada',
+            threadMeters: 2100,
+            image: 'https://i.ibb.co/3yNrJ50L/nina-afgana-002.jpg'
+          },
+          {
+            name: 'Salvador',
+            difficulty: 'Media',
+            threadMeters: 3500,
+            image: 'https://i.ibb.co/zhrs1j9z/images-25.jpg'
+          },
+          {
+            name: 'Homer',
+            difficulty: 'Media',
+            threadMeters: 1450,
+            image: 'https://elcomercio.pe/resizer/v2/LPW4JMM3MZG3DJA5RN5DGY44HU.jpeg?auth=d6548c4970aa9851b15fd42a111ddebe56afad7ef73ef69016d54669d465a499&width=1200&height=666&quality=75&smart=true'
+          },
+          {
+            name: 'Waltter',
+            difficulty: 'Media',
+            threadMeters: 1926,
+            image: 'https://media.c5n.com/p/0eae977635a996b9f1dd87ae7ad27117/adjuntos/326/imagenes/000/049/0000049796/790x0/smart/bryan-cranston-walter-white-heinsenberg-breaking-bad.jpg'
+          },
+          {
+            name: 'Mandala Zen',
+            difficulty: 'Fácil',
+            threadMeters: 1200,
+            image: 'https://www.shutterstock.com/image-vector/simple-mandala-shape-coloring-vector-260nw-1354884878.jpg'
+          }
+        ];
+
+        function createFallbackMarkup(name) {
+          return '<div class="fallback-emblem"><span class="font-display" style="font-size:1.25rem;color:#f3e5ab;">' + name + '</span></div>';
+        }
+
+        const galleryGrid = document.getElementById('gallery-grid');
+        const tplModal = document.getElementById('template-modal');
+        const tplTitle = document.getElementById('modal-tpl-title');
+        const tplMeta = document.getElementById('modal-tpl-meta');
+        const tplImgWrap = document.getElementById('modal-tpl-img-wrap');
+        const tplWa = document.getElementById('modal-tpl-wa');
+
+        function openTemplateModal(item) {
+          tplTitle.textContent = item.name;
+          tplMeta.textContent = 'Dificultad: ' + item.difficulty + ' · ' + item.threadMeters.toLocaleString('es-AR') + ' metros de hilo';
+          tplImgWrap.innerHTML = '';
+          const img = document.createElement('img');
+          img.src = item.image;
+          img.alt = item.name;
+          img.referrerPolicy = 'no-referrer';
+          img.onerror = function () { tplImgWrap.innerHTML = createFallbackMarkup(item.name); };
+          tplImgWrap.appendChild(img);
+          tplWa.href =
+            'https://wa.me/5493855800941?text=' +
+            encodeURIComponent('Hola Hexa Studio Art! Me interesa consultar sobre el Kit Pro Maestro para tejer la plantilla "' + item.name + '".');
+          tplModal.classList.add('open');
+        }
+
+        function renderGallery(filter) {
+          galleryGrid.innerHTML = '';
+          templates
+            .filter(function (t) { return filter === 'Todas' || t.difficulty === filter; })
+            .forEach(function (item) {
+              const btn = document.createElement('button');
+              btn.type = 'button';
+              btn.className = 'glass-card template-card';
+
+              const frame = document.createElement('div');
+              frame.className = 'circle-frame';
+              const img = document.createElement('img');
+              img.src = item.image;
+              img.alt = 'Plantilla de String Art ' + item.name;
+              img.loading = 'lazy';
+              img.referrerPolicy = 'no-referrer';
+              img.onerror = function () { frame.innerHTML = createFallbackMarkup(item.name); };
+              frame.appendChild(img);
+
+              const title = document.createElement('h3');
+              title.style.fontSize = '1.5rem';
+              title.style.marginTop = '18px';
+              title.textContent = item.name;
+
+              const meta = document.createElement('div');
+              meta.className = 'mono';
+              meta.style.fontSize = '0.76rem';
+              meta.style.color = 'var(--text-secondary)';
+              meta.style.marginTop = '6px';
+              meta.textContent = item.difficulty + ' · ' + item.threadMeters.toLocaleString('es-AR') + ' m de hilo';
+
+              btn.appendChild(frame);
+              btn.appendChild(title);
+              btn.appendChild(meta);
+              btn.addEventListener('click', function () { openTemplateModal(item); });
+              galleryGrid.appendChild(btn);
             });
+        }
+
+        renderGallery('Todas');
+
+        document.querySelectorAll('[data-filter]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            document.querySelectorAll('[data-filter]').forEach(function (b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            renderGallery(btn.getAttribute('data-filter') || 'Todas');
+          });
         });
+
+        document.querySelectorAll('.copy-trigger').forEach(function (btn) {
+          const original = btn.textContent;
+          btn.addEventListener('click', async function () {
+            const text = btn.getAttribute('data-copy') || '';
+            try {
+              await navigator.clipboard.writeText(text);
+            } catch (_) {
+              const ta = document.createElement('textarea');
+              ta.value = text;
+              ta.style.position = 'fixed';
+              ta.style.opacity = '0';
+              document.body.appendChild(ta);
+              ta.select();
+              document.execCommand('copy');
+              document.body.removeChild(ta);
+            }
+            btn.textContent = 'Copiado';
+            setTimeout(function () { btn.textContent = original; }, 2000);
+          });
+        });
+
+        const privacyModal = document.getElementById('privacy-modal');
+        document.getElementById('open-privacy-btn').addEventListener('click', function () {
+          privacyModal.classList.add('open');
+        });
+        document.getElementById('close-privacy-modal').addEventListener('click', function () {
+          privacyModal.classList.remove('open');
+        });
+        document.getElementById('close-privacy-btn').addEventListener('click', function () {
+          privacyModal.classList.remove('open');
+        });
+        privacyModal.addEventListener('click', function (e) {
+          if (e.target === privacyModal) privacyModal.classList.remove('open');
+        });
+
+        document.getElementById('close-tpl-modal').addEventListener('click', function () {
+          tplModal.classList.remove('open');
+        });
+        document.getElementById('close-tpl-btn').addEventListener('click', function () {
+          tplModal.classList.remove('open');
+        });
+        tplModal.addEventListener('click', function (e) {
+          if (e.target === tplModal) tplModal.classList.remove('open');
+        });
+      })();
     </script>
-</body>
+  </body>
 </html>
